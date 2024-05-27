@@ -12,7 +12,6 @@ export default function Home() {
         <SectionHeaders subHeader={"Our story"} mainHeader={"About us"} />
         <div className="text-gray-500 max-w-md mx-auto mt-4 flex flex-col gap-4">
           <p>
-            {" "}
             We're more than just a pizza place, we're a passionate team
             dedicated to bringing you the best darn pizza experience possible.
             We use only the freshest ingredients, from our hand-tossed doughs
@@ -20,7 +19,6 @@ export default function Home() {
           </p>
 
           <p>
-            {" "}
             Our story began with a love for pizza and a desire to share that
             love with our community. We believe that pizza is more than just a
             meal, it's a way to bring people together. Whether it's a fun family
@@ -29,7 +27,6 @@ export default function Home() {
           </p>
 
           <p>
-            {" "}
             We're committed to providing you with exceptional service, from our
             easy-to-use online ordering system to our friendly delivery staff.
             We believe that getting your pizza fix should be fast and
