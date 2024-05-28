@@ -1,9 +1,9 @@
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/app/api/authOptions/authOptions";
 import { MenuItem } from "@/models/MenuItem";
 import { Order } from "@/models/Order";
 import mongoose from "mongoose";
 import { getServerSession } from "next-auth";
-const stripe = require("stripe")(stripe - sceretkey);
+const stripe = require("stripe")(process.env.STRIPE_SK);
 
 export async function POST(req) {
   mongoose.connect(process.env.MONGO_URL);
@@ -60,11 +60,11 @@ export async function POST(req) {
     mode: "payment",
     customer_email: userEmail,
     success_url:
-      "http://localhost:3000/" +
+      process.env.NEXTAUTH_URL +
       "orders/" +
       orderDoc._id.toString() +
       "?clear-cart=1",
-    cancel_url: "http://localhost:3000/" + "cart?canceled=1",
+    cancel_url: process.env.NEXTAUTH_URL + "cart?canceled=1",
     metadata: { orderId: orderDoc._id.toString() },
     payment_intent_data: {
       metadata: { orderId: orderDoc._id.toString() },
