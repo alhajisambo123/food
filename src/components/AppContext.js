@@ -20,15 +20,12 @@ export function cartProductPrice(cartProduct) {
 
 export function AppProvider({ children }) {
   const [cartProducts, setCartProducts] = useState([]);
-
   const ls = typeof window !== "undefined" ? window.localStorage : null;
-
   useEffect(() => {
     if (ls && ls.getItem("cart")) {
       setCartProducts(JSON.parse(ls.getItem("cart")));
     }
   }, []);
-
   function clearCart() {
     setCartProducts([]);
     saveCartProductsToLocalStorage([]);
@@ -59,6 +56,14 @@ export function AppProvider({ children }) {
       return newProducts;
     });
   }
+  function addToBart(product) {
+    setCartProducts((prevProducts) => {
+      const cartProduct = { ...product, size: undefined, extras: [] };
+      const newProducts = [...prevProducts, cartProduct];
+      saveCartProductsToLocalStorage(newProducts);
+      return newProducts;
+    });
+  }
 
   return (
     <SessionProvider>
@@ -69,6 +74,7 @@ export function AppProvider({ children }) {
           addToCart,
           removeCartProduct,
           clearCart,
+          addToBart,
         }}
       >
         {children}
