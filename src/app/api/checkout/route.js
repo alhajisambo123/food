@@ -80,7 +80,7 @@ export async function POST(req) {
   const params = new URLSearchParams({ "clear-cart": 1 }); // Create URLSearchParams object
   successUrl.search = params.toString(); // Add query parameters using toString()
 
-  const cancelUrl = `${process.env.NEXTAUTH_URL}/cart?canceled=1`;
+  const cancelUrl = "$https://onlineproduct.vercel.app/cart?canceled=1";
   // Return the response with the success and cancel URLs:
   return Response.json({ successUrl, cancelUrl });
 }
