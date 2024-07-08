@@ -75,12 +75,12 @@ export async function POST(req) {
   // (req.query?.clearCart === "1" ? "?clear-cart=1" : "");
 
   const successUrl = new URL(
-    `${process.env.NEXTAUTH_URL}/orders/${orderDoc._id.toString()}`
+    `https://onlineproduct.vercel.app/orders/${orderDoc._id.toString()}`
   );
   const params = new URLSearchParams({ "clear-cart": 1 }); // Create URLSearchParams object
   successUrl.search = params.toString(); // Add query parameters using toString()
 
-  const cancelUrl = "$https://onlineproduct.vercel.app/cart?canceled=1";
+  const cancelUrl = "https://onlineproduct.vercel.app/cart?canceled=1";
   // Return the response with the success and cancel URLs:
   return Response.json({ successUrl, cancelUrl });
 }
