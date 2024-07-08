@@ -1,6 +1,6 @@
 import EditableImage from "@/components/layout/EditableImage";
 import MenuItemPriceProps from "@/components/layout/MenuItemPriceProps";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function MenuItemForm({ onSubmit, menuItem }) {
   const [image, setImage] = useState(menuItem?.image || "");
@@ -13,6 +13,7 @@ export default function MenuItemForm({ onSubmit, menuItem }) {
   const [extraIngredientPrices, setExtraIngredientPrices] = useState(
     menuItem?.extraIngredientPrices || []
   );
+  const [deliveryDate, setDeliveryDate] = useState(""); // String to store delivery date
 
   useEffect(() => {
     fetch("/api/categories").then((res) => {
@@ -21,6 +22,8 @@ export default function MenuItemForm({ onSubmit, menuItem }) {
       });
     });
   }, []);
+
+  console.log(category);
 
   return (
     <form
@@ -33,6 +36,7 @@ export default function MenuItemForm({ onSubmit, menuItem }) {
           sizes,
           extraIngredientPrices,
           category,
+          deliveryDate, // Add deliveryDate to the submitted data
         })
       }
       className="mt-8 max-w-2xl mx-auto"
@@ -45,7 +49,7 @@ export default function MenuItemForm({ onSubmit, menuItem }) {
           <EditableImage link={image} setLink={setImage} />
         </div>
         <div className="grow">
-          <label>Item name</label>
+          <label>Product name</label>
           <input
             type="text"
             value={name}
@@ -64,7 +68,7 @@ export default function MenuItemForm({ onSubmit, menuItem }) {
           >
             {categories?.length > 0 &&
               categories.map((c) => (
-                <option key={c._id} value={c._id}>
+                <option key={c._id} value={c.name}>
                   {c.name}
                 </option>
               ))}
@@ -75,6 +79,17 @@ export default function MenuItemForm({ onSubmit, menuItem }) {
             value={basePrice}
             onChange={(ev) => setBasePrice(ev.target.value)}
           />
+          <div className="py-2">
+            {" "}
+            <label>Delivery Date</label>
+            <input
+              className="ms-1"
+              type="date"
+              value={deliveryDate}
+              onChange={(ev) => setDeliveryDate(ev.target.value)}
+            />
+          </div>
+
           <MenuItemPriceProps
             name={"Sizes"}
             addLabel={"Add item size"}

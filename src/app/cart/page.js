@@ -3,7 +3,6 @@ import { CartContext, cartProductPrice } from "@/components/AppContext";
 import Trash from "@/components/icons/Trash";
 import AddressInputs from "@/components/layout/AddressInputs";
 import SectionHeaders from "@/components/layout/SectionHeaders";
-import { useProfile } from "@/components/UseProfile";
 import Image from "next/image";
 import { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -11,29 +10,14 @@ import toast from "react-hot-toast";
 export default function CartPage() {
   const { cartProducts, removeCartProduct } = useContext(CartContext);
   const [address, setAddress] = useState({});
-  const { data: profileData } = useProfile();
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       if (window.location.href.includes("canceled=1")) {
-        toast.error("Payment failed 😔");
+        toast.error("Ordering failed 😔");
       }
     }
   }, []);
-
-  useEffect(() => {
-    if (profileData?.city) {
-      const { phone, streetAddress, city, postalCode, country } = profileData;
-      const addressFromProfile = {
-        phone,
-        streetAddress,
-        city,
-        postalCode,
-        country,
-      };
-      setAddress(addressFromProfile);
-    }
-  }, [profileData]);
 
   let subtotal = 0;
   for (const p of cartProducts) {
@@ -42,6 +26,7 @@ export default function CartPage() {
   function handleAddressChange(propName, value) {
     setAddress((prevAddress) => ({ ...prevAddress, [propName]: value }));
   }
+
   async function proceedToCheckout(ev) {
     ev.preventDefault();
     // address and shopping cart products
@@ -55,7 +40,12 @@ export default function CartPage() {
           cartProducts,
         }),
       }).then(async (response) => {
+        const { successUrl } = await response.json(); // Destructure successUrl from response
+        toast.success("Order placed successfully!");
+        window.location.href = successUrl;
         if (response.ok) {
+          console.log(response);
+
           resolve();
           window.location = await response.json();
         } else {
@@ -66,7 +56,7 @@ export default function CartPage() {
 
     await toast.promise(promise, {
       loading: "Preparing your order...",
-      success: "Redirecting to payment...",
+      success: "Successfully order...",
       error: "Something went wrong... Please try again later",
     });
   }
@@ -119,7 +109,7 @@ export default function CartPage() {
                   )}
                 </div>
                 <div className="text-lg font-semibold">
-                  ${cartProductPrice(product)}
+                  ₵{cartProductPrice(product)}
                 </div>
                 {!!removeCartProduct && (
                   <div className="ml-2">
@@ -135,19 +125,8 @@ export default function CartPage() {
               </div>
             ))}
           <div className="py-2 pr-16 flex justify-end items-center">
-            <div className="text-gray-500">
-              Subtotal:
-              <br />
-              Delivery:
-              <br />
-              Total:
-            </div>
-            <div className="font-semibold pl-2 text-right">
-              ${subtotal}
-              <br />
-              $5
-              <br />${subtotal + 5}
-            </div>
+            <div className="text-gray-500">Total:</div>
+            <div className="font-semibold pl-2 text-right">₵{subtotal}</div>
           </div>
         </div>
         <div className="bg-gray-100 p-4 rounded-lg">
@@ -157,7 +136,7 @@ export default function CartPage() {
               addressProps={address}
               setAddressProp={handleAddressChange}
             />
-            <button type="submit">Pay ${subtotal + 5}</button>
+            <button type="submit">Place Order for ₵{subtotal}</button>
           </form>
         </div>
       </div>

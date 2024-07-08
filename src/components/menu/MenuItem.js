@@ -57,13 +57,13 @@ export default function MenuItem(menuItem) {
               className="overflow-y-scroll p-2"
               style={{ maxHeight: "calc(100vh - 100px)" }}
             >
-              <Image
+              {/* <Image
                 src={image}
                 alt={name}
                 width={300}
                 height={200}
                 className="mx-auto"
-              />
+              /> */}
 
               <h2 className="text-lg font-bold text-center mb-2">{name}</h2>
               <p className="text-center text-gray-500 text-sm mb-2">
@@ -123,6 +123,7 @@ export default function MenuItem(menuItem) {
           </div>
         </div>
       )}
+      {/* <MenuItemTile onAddToCart={handleAddToCartButtonClick} {...menuItem} /> */}
       {/* <MenuItemTile onAddToCart={handleAddToCartButtonClick} {...menuItem} /> */}
       <MenuItemTile onAddToCart={handleAddToCartButtonClick} {...menuItem} />
     </>
