@@ -29,7 +29,6 @@ export default function CartPage() {
 
   async function proceedToCheckout(ev) {
     ev.preventDefault();
-    // address and shopping cart products
 
     const promise = new Promise((resolve, reject) => {
       fetch("/api/checkout", {
@@ -40,7 +39,7 @@ export default function CartPage() {
           cartProducts,
         }),
       }).then(async (response) => {
-        const { successUrl } = await response.json(); // Destructure successUrl from response
+        const { successUrl } = await response.json();
         toast.success("Order placed successfully!");
         window.location.href = successUrl;
         if (response.ok) {

@@ -7,44 +7,45 @@ export default function About() {
         <SectionHeaders subHeader={"Our story"} mainHeader={"About us"} />
         <div className="text-gray-500 max-w-md mx-auto mt-4 flex flex-col gap-4">
           <p>
-            We're more than just a pizza place, we're a passionate team
-            dedicated to bringing you the best darn pizza experience possible.
-            We use only the freshest ingredients, from our hand-tossed doughs
-            made daily to our premium cheeses and toppings.
+            We're Smartex, a student-run e-commerce business here in the
+            University . We understand the challenges of dorm life and busy
+            schedules, so we've created a convenient way for you to get the
+            essentials you need delivered right to your doorstep (or dorm
+            room!).
           </p>
 
           <p>
-            Our story began with a love for pizza and a desire to share that
-            love with our community. We believe that pizza is more than just a
-            meal, it's a way to bring people together. Whether it's a fun family
-            night in, a gathering with friends, or a quick bite after a long
-            day, we want our pizzas to be the centerpiece of those moments.
+            Smartex started with a brief story about the inspiration behind your
+            business - e.g., noticing a lack of convenient access to home
+            essentials on campus, or identifying a need for specific products
+            among students. We're passionate about making student life easier
+            and brighter, and we believe everyone deserves to have a comfortable
+            and functional living space, even in a dorm room.
           </p>
 
           <p>
-            We're committed to providing you with exceptional service, from our
-            easy-to-use online ordering system to our friendly delivery staff.
-            We believe that getting your pizza fix should be fast and
-            hassle-free.
+            We offer a variety of products, including: Home Appliances: From
+            mini fridges and microwaves to air purifiers and kettles, we have
+            everything you need to create a cozy and convenient home away from
+            home. Clothing: Stay comfy and stylish with our selection of
+            dorm-friendly apparel, sleepwear, and accessories. But we're more
+            than just a store. We're a community! We value your feedback and are
+            always looking for ways to improve our selection and services.
           </p>
 
           <p>
-            So, what are you waiting for? Order your slice of happiness today!
+            Shop with Confidence. We offer a hassle-free shopping experience
+            with secure online ordering and convenient delivery options. Join
+            the Smartex Family!
           </p>
-        </div>
-      </section>
-      <section className="text-center my-8" id="contact">
-        <SectionHeaders
-          subHeader={"Don't hesitate"}
-          mainHeader={"Contact us"}
-        />
-        <div className="mt-8">
-          <a
-            className="text-4xl underline text-gray-500"
-            href="tel:+46738123123"
-          >
-            +233 547 038 272
-          </a>
+          <p>
+            We invite you to browse our selection and discover how Smartex can
+            make your life on campus a little bit easier. We're here to support
+            you throughout your academic journey, one appliance and comfy
+            t-shirt at a time! Stay Connected! Follow us on social media for
+            updates, promotions, and student life hacks! We're excited to be a
+            part of your college experience!
+          </p>
         </div>
       </section>
     </>

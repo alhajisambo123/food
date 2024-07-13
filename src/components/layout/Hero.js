@@ -11,6 +11,11 @@ export default function Hero() {
     "/pexels-photo-393047.webp",
     "/CPT780WU Image 1.jpg",
     "/hand mixture.jpg",
+    "/coffee maker.webp",
+    "/electric iron.webp",
+    "/electric heater.png",
+    "/bag.webp",
+    "/laptop bag.webp",
   ];
 
   useEffect(() => {

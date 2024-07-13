@@ -65,8 +65,6 @@ export default function SingleProduct() {
             </p>
 
             <AddToCartButton
-              // image={image}
-              // hasSizesOrExtras={hasSizesOrExtras}
               onClick={handleAddToCartButtonClick}
               basePrice={product?.basePrice}
             />
